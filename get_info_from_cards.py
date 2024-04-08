@@ -3,6 +3,8 @@ import requests
 import pandas as pd
 import os
 from Parsing_RIA import urls, setup_chrome_driver, save_base, Path, thems
+from tqdm import tqdm
+import time
 
 
 def get_info_from_cards(card_urls, id):
@@ -14,7 +16,7 @@ def get_info_from_cards(card_urls, id):
         "ID": []
     }
 
-    for idx, url in enumerate(card_urls):
+    for url in tqdm(card_urls, desc="Processing", unit="element"):
         try:
             response = requests.get(url)
             html_content = response.content
@@ -41,8 +43,6 @@ def get_info_from_cards(card_urls, id):
             data['ID'].append(id)
             data['url'].append(url)
 
-            if idx % 1000 == 0:
-                print(idx, url)
         
         except Exception as e:
             pass
@@ -52,16 +52,17 @@ def get_info_from_cards(card_urls, id):
 
 
 if __name__ == "__main__":
+    print(Path.keys())
     for key in Path.keys():
         files = os.listdir(Path[key])
         print(files)
-        for file in files:
+        for idx, file in enumerate(files):
             print(os.path.join(Path[key], file))
             df = pd.read_csv(os.path.join(Path[key], file))
             card_urls = df["URL"].tolist()
             info_df = get_info_from_cards(card_urls, thems[key])
             
-            save_path = os.path.join('data', f'{thems[key]}_info.csv')
+            save_path = os.path.join('data', f'{thems[key]}_{idx}_info.csv')
             os.makedirs(os.path.dirname(save_path), exist_ok=True)
             
             info_df.to_csv(save_path, index=False)

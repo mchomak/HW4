@@ -6,8 +6,9 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-from time import sleep
 import pandas as pd
+from tqdm import tqdm
+import time
 import os
 
 main_path = os.getcwd()
@@ -15,11 +16,11 @@ main_path = os.getcwd()
 Path = {
         # 'Общество/Россия' : os.path.join(main_path, "data", "Social"),
         # 'Экономика' : os.path.join(main_path, "data", "Economy"),
-        'Силовые структуры' : os.path.join(main_path, "data", "Defence"),
-        'Бывший СССР' : os.path.join(main_path, "data", "CCCR"),
-        'Спорт' : os.path.join(main_path, "data", "Sport"),
-        'Забота о себе' : os.path.join(main_path, "data", "Health"),
-        'Строительство' : os.path.join(main_path, "data", "Build"),
+        # 'Силовые структуры' : os.path.join(main_path, "data", "Defence"),
+        # 'Бывший СССР' : os.path.join(main_path, "data", "CCCR"),
+        # 'Спорт' : os.path.join(main_path, "data", "Sport"),
+        # 'Забота о себе' : os.path.join(main_path, "data", "Health"),
+        # 'Строительство' : os.path.join(main_path, "data", "Build"),
         'Туризм/Путешествия' : os.path.join(main_path, "data", "Tourism"),
         'Наука и техника' : os.path.join(main_path, "data", "Since")
         }
@@ -36,16 +37,16 @@ thems = {'Общество/Россия' : 0,
         }
 
 urls = {
-        # 'Общество/Россия' : ["https://ria.ru/society/"],
-        # 'Экономика' : ["https://ria.ru/economy/"],
-        # 'Силовые структуры' : ["https://ria.ru/defense_safety/"],
+        'Общество/Россия' : ["https://ria.ru/society/"],
+        'Экономика' : ["https://ria.ru/economy/"],
+        'Силовые структуры' : ["https://ria.ru/defense_safety/"],
         'Бывший СССР' : [],
-        # 'Спорт' : ["https://rsport.ria.ru/"],
-        # 'Забота о себе' : ["https://ria.ru/sn_health/"],
+        'Спорт' : ["https://rsport.ria.ru/"],
+        'Забота о себе' : ["https://ria.ru/sn_health/"],
         'Строительство' : [],
         'Туризм/Путешествия' : [
-                                # "https://ria.ru/tourism_navigator/",
-                                # "https://ria.ru/tourism_visual/",
+                                "https://ria.ru/tourism_navigator/",
+                                "https://ria.ru/tourism_visual/",
                                 "https://ria.ru/tourism_food/",
                                 "https://ria.ru/category_intervyu_turizm/",
                                 "https://ria.ru/tourism_news/"

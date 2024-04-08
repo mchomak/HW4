@@ -18,11 +18,11 @@ Path = {
         # 'Экономика' : os.path.join(main_path, "data", "Economy"),
         # 'Силовые структуры' : os.path.join(main_path, "data", "Defence"),
         # 'Бывший СССР' : os.path.join(main_path, "data", "CCCR"),
-        # 'Спорт' : os.path.join(main_path, "data", "Sport"),
+        'Спорт' : os.path.join(main_path, "data", "Sport"),
         # 'Забота о себе' : os.path.join(main_path, "data", "Health"),
         # 'Строительство' : os.path.join(main_path, "data", "Build"),
-        'Туризм/Путешествия' : os.path.join(main_path, "data", "Tourism"),
-        'Наука и техника' : os.path.join(main_path, "data", "Since")
+        # 'Туризм/Путешествия' : os.path.join(main_path, "data", "Tourism"),
+        # 'Наука и техника' : os.path.join(main_path, "data", "Since")
         }
 
 thems = {'Общество/Россия' : 0,
@@ -41,7 +41,17 @@ urls = {
         'Экономика' : ["https://ria.ru/economy/"],
         'Силовые структуры' : ["https://ria.ru/defense_safety/"],
         'Бывший СССР' : [],
-        'Спорт' : ["https://rsport.ria.ru/"],
+        'Спорт' : [
+            "https://rsport.ria.ru/football/",
+            "https://rsport.ria.ru/hockey/",
+            "https://rsport.ria.ru/figure_skating/",
+            "https://rsport.ria.ru/tennis/",
+            "https://rsport.ria.ru/fights/",
+            "https://rsport.ria.ru/lyzhnye-gonki/",
+            "https://rsport.ria.ru/biathlon/",
+            "https://rsport.ria.ru/category_formula_1/",
+            "https://rsport.ria.ru/zozh/"
+                    ],
         'Забота о себе' : ["https://ria.ru/sn_health/"],
         'Строительство' : [],
         'Туризм/Путешествия' : [
